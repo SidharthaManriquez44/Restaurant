@@ -12,4 +12,4 @@ class Menu:
     def show_items(self):
         if not self.items:
             return "  (No items available)"
-        return '\n'.join([f"  - {item.title()}: ${price:.2f}" for item, price in self.items.items()])
+        return '\n'.join([f" - {item.title()}: ${price:.2f}" for item, price in self.items.items()])

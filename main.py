@@ -3,7 +3,7 @@ from Restaurant.Restaurant import Restaurant
 
 
 # Create restaurant instance
-mi_restaurante = Restaurant("El reino del Polar")
+mi_restaurante = Restaurant("The kingdom of the Polar")
 
 # Create menus
 menus = {
@@ -52,6 +52,11 @@ for menu in menus.values():
 print("📋 Menús registrados:")
 for menu in mi_restaurante.menus:
     print(menu)
+
+for menu_id, menu in menus.items():
+    print(menu)
+    print(menu.show_items())
+    print("-" * 40)
 
 # Show menus available at the current time
 print("\n⏰ Menús disponibles ahora:")
