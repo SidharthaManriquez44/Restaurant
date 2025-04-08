@@ -1,5 +1,5 @@
-from Restaurant.Menu import Menu
-from Restaurant.Restaurant import Restaurant
+from restaurant.menu import Menu
+from restaurant.restaurant import Restaurant
 
 
 # Create restaurant instance
