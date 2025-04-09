@@ -1,26 +1,33 @@
-
----
-
-## 📄 2. `.gitignore` — Para ignorar archivos innecesarios en Git
-
-Crea este archivo en la raíz del proyecto y agrega lo siguiente:
-
-```gitignore
-# Python
+# Archivos de Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
 
 # Entorno virtual
 venv/
 .env/
+.venv/
 
-# IDEs
+# PyCharm
 .idea/
+*.iml
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Empaquetado
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# VSCode (si lo usas)
 .vscode/
 
-# Archivos temporales
-*.log
-*.tmp
-.DS_Store
