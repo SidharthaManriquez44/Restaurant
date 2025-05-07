@@ -1,6 +1,6 @@
 import unittest
-from restaurant.menu import Menu
-from restaurant.restaurant import Restaurant
+from src.restaurant.menu import Menu
+from src.restaurant.restaurant import Restaurant
 from datetime import datetime
 
 class TestRestaurantAndMenu(unittest.TestCase):
