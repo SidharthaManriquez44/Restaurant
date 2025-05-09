@@ -8,7 +8,7 @@ class TableManager:
         available_tables = [t for t in self.tables if not t.is_reserved]
         selected_tables = []
 
-        for table in sorted(available_tables, key=lambda t: t.seats):  # mesas pequeñas primero
+        for table in sorted(available_tables, key=lambda t: t.seats):  # small tables first
             if required <= 0:
                 break
             selected_tables.append(table)
