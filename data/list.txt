@@ -1,3 +1,0 @@
-Nombre,Edad,YYYY-MM-DD HH:MM
-Ana Torres,25,2025-05-07 19:30
-Luis Martínez,19,2025-05-07 20:00

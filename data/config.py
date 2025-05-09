@@ -1,2 +1,2 @@
 RESTAURANT_NAME = "Polar’s Den"
-LIST_FILE = "data/list.txt"
+BOOKINGS_FILE = "data/bookings.txt"

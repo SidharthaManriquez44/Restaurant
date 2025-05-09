@@ -1,19 +1,22 @@
-import pytest
-from datetime import datetime
 from src.booking.booking import BookingManager
+from src.restaurant.customer import Customer
+from datetime import datetime
+import pytest
+
 
 @pytest.fixture
 def temp_booking_file(tmp_path):
-    """Create a temporary booking file for testing."""
-    file = tmp_path / "reservas_test.txt"
+    file = tmp_path / "bookings_test.txt"
     return str(file)
 
 def test_add_read_booking(temp_booking_file):
     manager = BookingManager(temp_booking_file)
 
-    # Add two Bookings
-    manager.add_booking("Sofía Salas", 25,  datetime(2025, 5, 10, 18, 30))
-    manager.add_booking("John Smith", 49, datetime(2025, 5, 10, 20, 0))
+    customer1 = Customer("Sofía Salas", 25, 3, datetime(2025, 5, 10, 18, 30))
+    customer2 = Customer("John Smith", 49, 4, datetime(2025, 5, 10, 20, 0))
+
+    manager.add_booking(customer1, 1)
+    manager.add_booking(customer2, 2)
 
     bookings = list(manager.read_bookings())
 
@@ -21,21 +24,25 @@ def test_add_read_booking(temp_booking_file):
     assert bookings[0]["name"] == "Sofía Salas"
     assert bookings[1]["age"] == 49
     assert bookings[1]["reservation_time"] == datetime(2025, 5, 10, 20, 0)
+    assert bookings[1]["number_of_tables"] == 2
 
 def test_eligible_for_welcome_drink(temp_booking_file):
     manager = BookingManager(temp_booking_file)
 
-    # Add bookings with different ages
-    manager.add_booking("Mario Perez", 49, datetime(2025, 5, 11, 19, 0))
-    manager.add_booking("Javier Granados", 40, datetime(2025, 5, 11, 21, 0))
-    manager.add_booking("Raul Duran", 15, datetime(2025, 5, 11, 20, 0))
+    c1 = Customer("Mario Perez", 49, 2, datetime(2025, 5, 11, 19, 0))
+    c2 = Customer("Javier Granados", 40, 3, datetime(2025, 5, 11, 21, 0))
+    c3 = Customer("Raul Duran", 15, 1, datetime(2025, 5, 11, 20, 0))
+
+    manager.add_booking(c1, 1)
+    manager.add_booking(c2, 1)
+    manager.add_booking(c3, 1)
 
     eligible = list(manager.eligible_for_welcome_drink())
 
     assert len(eligible) == 2
     assert all(guest["age"] >= 21 for guest in eligible)
-    guest_names = [guest["name"] for guest in eligible]
-    assert "Mario Perez" in guest_names
-    assert "Javier Granados" in guest_names
-    assert "Raul Duran" not in guest_names
 
+    names = [g["name"] for g in eligible]
+    assert "Mario Perez" in names
+    assert "Javier Granados" in names
+    assert "Raul Duran" not in names
